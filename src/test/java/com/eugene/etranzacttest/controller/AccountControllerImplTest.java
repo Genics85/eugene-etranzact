@@ -45,11 +45,21 @@ class AccountControllerImplTest {
 
         Mockito.when(service.get(any())).thenReturn(res);
 
+        Account expected = underTest.get(res.getId());
+
+        assertEquals(expected,res );
+        Mockito.verify(service,Mockito.times(1)).get(any());
 
     }
 
     @Test
     void delete() {
+        Mockito.when(service.delete(any())).thenReturn("Deleted");
+
+        String expected = underTest.delete(res.getId());
+
+        assertEquals("Deleted", expected);
+        Mockito.verify(service,times(1)).delete(any());
     }
 
     @Test
